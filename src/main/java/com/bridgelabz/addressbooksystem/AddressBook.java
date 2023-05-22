@@ -1,12 +1,16 @@
 package com.bridgelabz.addressbooksystem;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class AddressBook {
     static int temp = 0;
 
     ArrayList<Contact> personList = new ArrayList<>();
+    Dictionary<String, ArrayList<Contact>> cityDict = new Hashtable<String, ArrayList<Contact>>();
+    Dictionary<String, ArrayList<Contact>> stateDict = new Hashtable<>();
 
     public void addContact() {
         Contact contact = new Contact();
@@ -44,6 +48,9 @@ public class AddressBook {
         }else
             personList.add(contact);
         temp++;
+
+        cityDict.put(city,personList);
+        stateDict.put(state,personList);
     }
 
     @Override

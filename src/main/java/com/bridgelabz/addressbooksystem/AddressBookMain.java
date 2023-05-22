@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbooksystem;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
     public static void main(String[] args) {
@@ -32,5 +33,13 @@ public class AddressBookMain {
         addressBook3.addContact();
         addressBook.add(addressBook3);
         map1.put(name3,addressBook3);
+
+        List<Contact> persons = new ArrayList<>();
+                map1.values().stream().forEach(addressBook4 -> {
+                    List<Contact> tempList = addressBook4.personList.stream().filter(contact -> contact.getCity().equals("Mumbai")).collect(Collectors.toList());
+                persons.addAll(tempList);
+                });
+        System.out.println(persons);
+
     }
 }
