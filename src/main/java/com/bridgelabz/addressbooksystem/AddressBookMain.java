@@ -40,6 +40,20 @@ public class AddressBookMain {
                 persons.addAll(tempList);
                 });
         System.out.println(persons);
+        
+        List<Contact> cityPersons = new ArrayList<>();
+        map1.values().stream().forEach(addressBook5 -> {
+            List<Contact> tempList1 = addressBook5.cityDict.get("Mumbai").stream().toList();
+            cityPersons.addAll(tempList1);
+        });
+        System.out.println(cityPersons);
+
+        List<Contact> statePersons = new ArrayList<>();
+        map1.values().stream().forEach(addressBook5 -> {
+            List<Contact> tempList1 = addressBook5.stateDict.get("Maharashtra").stream().toList();
+            statePersons.addAll(tempList1);
+        });
+        System.out.println(statePersons);
 
     }
 }
