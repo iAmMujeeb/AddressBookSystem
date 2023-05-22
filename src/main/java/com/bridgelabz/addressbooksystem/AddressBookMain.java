@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbooksystem;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 public class AddressBookMain {
@@ -40,7 +41,7 @@ public class AddressBookMain {
                 persons.addAll(tempList);
                 });
         System.out.println(persons);
-        
+
         List<Contact> cityPersons = new ArrayList<>();
         map1.values().stream().forEach(addressBook5 -> {
             List<Contact> tempList1 = addressBook5.cityDict.get("Mumbai").stream().toList();
@@ -54,6 +55,19 @@ public class AddressBookMain {
             statePersons.addAll(tempList1);
         });
         System.out.println(statePersons);
+
+        AtomicLong personsCityCount = new AtomicLong();
+        map1.values().stream().forEach(addressBook5 -> {
+            personsCityCount.set(addressBook5.cityDict.get("Mumbai").stream().count());
+        });
+        System.out.println(personsCityCount);
+
+
+        AtomicLong personsStateCount = new AtomicLong();
+        map1.values().stream().forEach(addressBook5 -> {
+            personsStateCount.set(addressBook5.stateDict.get("Maharashtra").stream().count());
+        });
+        System.out.println(personsStateCount);
 
     }
 }
