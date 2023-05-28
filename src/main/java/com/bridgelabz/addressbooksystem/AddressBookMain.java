@@ -77,5 +77,29 @@ public class AddressBookMain {
 
         System.out.println(personNameSortedList);
 
+        List<Contact> cityNameSortedList = new ArrayList<>();
+        map1.values().stream().forEach(AddressBook->{
+            List<Contact> tempList =  AddressBook.personList.stream().sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList());
+            cityNameSortedList.addAll(tempList);
+        });
+
+        System.out.println(cityNameSortedList);
+
+        List<Contact> stateNameSortedList = new ArrayList<>();
+        map1.values().stream().forEach(AddressBook->{
+            List<Contact> tempList =  AddressBook.personList.stream().sorted(Comparator.comparing(Contact::getState)).collect(Collectors.toList());
+            stateNameSortedList.addAll(tempList);
+        });
+
+        System.out.println(stateNameSortedList);
+
+        List<Contact> zipSortedList = new ArrayList<>();
+        map1.values().stream().forEach(AddressBook->{
+            List<Contact> tempList =  AddressBook.personList.stream().sorted(Comparator.comparingInt(Contact::getZip)).collect(Collectors.toList());
+            zipSortedList.addAll(tempList);
+        });
+
+        System.out.println(zipSortedList);
+
     }
 }
