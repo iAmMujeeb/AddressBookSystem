@@ -1,6 +1,8 @@
 package com.bridgelabz.addressbooksystem;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
     public static void main(String[] args) {
@@ -32,5 +34,48 @@ public class AddressBookMain {
         addressBook3.addContact();
         addressBook.add(addressBook3);
         map1.put(name3,addressBook3);
+
+        List<Contact> persons = new ArrayList<>();
+                map1.values().stream().forEach(addressBook4 -> {
+                    List<Contact> tempList = addressBook4.personList.stream().filter(contact -> contact.getCity().equals("Mumbai")).collect(Collectors.toList());
+                persons.addAll(tempList);
+                });
+        System.out.println(persons);
+
+        List<Contact> cityPersons = new ArrayList<>();
+        map1.values().stream().forEach(addressBook5 -> {
+            List<Contact> tempList1 = addressBook5.cityDict.get("Mumbai").stream().toList();
+            cityPersons.addAll(tempList1);
+        });
+        System.out.println(cityPersons);
+
+        List<Contact> statePersons = new ArrayList<>();
+        map1.values().stream().forEach(addressBook5 -> {
+            List<Contact> tempList1 = addressBook5.stateDict.get("Maharashtra").stream().toList();
+            statePersons.addAll(tempList1);
+        });
+        System.out.println(statePersons);
+
+        AtomicLong personsCityCount = new AtomicLong();
+        map1.values().stream().forEach(addressBook5 -> {
+            personsCityCount.set(addressBook5.cityDict.get("Mumbai").stream().count());
+        });
+        System.out.println(personsCityCount);
+
+
+        AtomicLong personsStateCount = new AtomicLong();
+        map1.values().stream().forEach(addressBook5 -> {
+            personsStateCount.set(addressBook5.stateDict.get("Maharashtra").stream().count());
+        });
+        System.out.println(personsStateCount);
+
+        List<Contact> personNameSortedList = new ArrayList<>();
+        map1.values().stream().forEach(AddressBook->{
+            List<Contact> tempList =  AddressBook.personList.stream().sorted(Comparator.comparing(Contact::getFirstName)).collect(Collectors.toList());
+            personNameSortedList.addAll(tempList);
+        });
+
+        System.out.println(personNameSortedList);
+
     }
 }
