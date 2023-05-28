@@ -69,5 +69,13 @@ public class AddressBookMain {
         });
         System.out.println(personsStateCount);
 
+        List<Contact> personNameSortedList = new ArrayList<>();
+        map1.values().stream().forEach(AddressBook->{
+            List<Contact> tempList =  AddressBook.personList.stream().sorted(Comparator.comparing(Contact::getFirstName)).collect(Collectors.toList());
+            personNameSortedList.addAll(tempList);
+        });
+
+        System.out.println(personNameSortedList);
+
     }
 }
